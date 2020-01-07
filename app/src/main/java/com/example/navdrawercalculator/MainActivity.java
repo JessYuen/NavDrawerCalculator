@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.calculation_item, answers);
+        adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, answers);
         listView.setAdapter(adapter);
     }
 
