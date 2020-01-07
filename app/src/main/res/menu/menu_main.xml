@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.navdrawercalculator.MainActivity">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_addition"
+            android:title="@string/addition"
+            android:icon="@drawable/ic_menu_addition"/>
+        <item
+            android:id="@+id/nav_subtraction"
+            android:title="@string/subtraction"
+            android:icon="@drawable/ic_menu_subtraction"/>
+        <item
+            android:id="@+id/nav_multiplication"
+            android:title="@string/multiplication"
+            android:icon="@drawable/ic_menu_multiplication"/>
+        <item
+            android:id="@+id/nav_division"
+            android:title="@string/division"
+            android:icon="@drawable/ic_menu_division"/>
+    </group>
+
+</menu>
