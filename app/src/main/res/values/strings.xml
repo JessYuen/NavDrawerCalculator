@@ -5,4 +5,6 @@
     <string name="subtraction">Subtraction</string>
     <string name="multiplication">Multiplication</string>
     <string name="division">Division</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
