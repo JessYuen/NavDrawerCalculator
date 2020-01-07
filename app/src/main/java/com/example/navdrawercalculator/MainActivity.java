@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private EditText num1, num2;
-    private int num1Int, num2Int;
     private ArrayList<String> answers = new ArrayList<>();;
     private ListView listView;
     private String operation = "+";
@@ -66,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String num1Str = num1.getText().toString();
         String num2Str = num2.getText().toString();
 
-        num1Int = Integer.parseInt(num1Str);
-        num2Int = Integer.parseInt(num2Str);
+        int num1Int = Integer.parseInt(num1Str);
+        int num2Int = Integer.parseInt(num2Str);
 
         int result = performOperation(num1Int, num2Int);
 
@@ -79,22 +78,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int performOperation(int num1, int num2) {
         int result = 0;
 
-            switch (operation) {
-                case "/":
-                    result = num1 / num2;
-                    break;
-                case "-":
-                    result = num1 - num2;
-                    break;
-                case "*":
-                    result = num1 * num2;
-                    break;
-                case "+":
-                    result = num1 + num2;
-                    break;
-            }
+        switch (operation) {
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            case "/":
+                result = num1 / num2;
+                break;
+            case "*":
+                result = num1 * num2;
+                break;
+            default:
 
-            return result;
+        }
+        return result;
+
         }
 
     View.OnClickListener undo = new View.OnClickListener() {
