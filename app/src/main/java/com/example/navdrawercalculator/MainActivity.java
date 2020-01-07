@@ -1,13 +1,12 @@
 package com.example.navdrawercalculator;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<String> answers = new ArrayList<>();;
     private ListView listView;
     private String operation = "+";
+    private DecimalFormat decimalFormat = new DecimalFormat("#.##########");
+
     ArrayAdapter<String> adapter;
 
     @Override
@@ -44,9 +46,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputHandler();
-                Snackbar.make(view, "Equation has been calculated", Snackbar.LENGTH_LONG)
-                        .setAction("Undo", undo).show();
+                if (inputHandler()) {
+                    Snackbar.make(view, "Equation has been calculated", Snackbar.LENGTH_LONG)
+                            .setAction("Undo", undo).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Please enter another number", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -63,22 +68,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listView.setAdapter(adapter);
     }
 
-    public void inputHandler() {
+    public boolean inputHandler() {
         String num1Str = num1.getText().toString();
         String num2Str = num2.getText().toString();
 
-        int num1Int = Integer.parseInt(num1Str);
-        int num2Int = Integer.parseInt(num2Str);
+        if (!num1Str.isEmpty() || !num2Str.isEmpty()) {
+            Double num1Int = Double.parseDouble(num1Str);
+            Double num2Int = Double.parseDouble(num2Str);
 
-        int result = performOperation(num1Int, num2Int);
+            String result = performOperation(num1Int, num2Int);
 
-        answers.add(num1Str + operation + num2Str + " = " + result);
-        adapter.notifyDataSetChanged();
+            answers.add(num1Str + operation + num2Str + " = " + result);
+            adapter.notifyDataSetChanged();
+        } else {
+            return false;
+        }
+
+        return true;
 
     }
 
-    private int performOperation(int num1, int num2) {
-        int result = 0;
+    private String performOperation(Double num1, Double num2) {
+        Double result = Double.NaN;
 
         switch (operation) {
             case "+":
@@ -96,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
 
         }
-        return result;
+        return decimalFormat.format(result);
 
         }
 
