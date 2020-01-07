@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int num1Int, num2Int;
     private ArrayList<String> answers = new ArrayList<>();;
     private ListView listView;
-    private String operation = "";
+    private String operation = "+";
     ArrayAdapter<String> adapter;
 
     @Override
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        adapter = new ArrayAdapter(MainActivity.this, R.layout.calculation_item, answers);
+        adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.calculation_item, answers);
         listView.setAdapter(adapter);
     }
 
@@ -136,6 +136,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
 
         }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
 
         return true;
     }
