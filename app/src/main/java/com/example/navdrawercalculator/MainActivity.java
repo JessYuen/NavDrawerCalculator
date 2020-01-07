@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String num1Str = num1.getText().toString();
         String num2Str = num2.getText().toString();
 
-        if (!num1Str.isEmpty() || !num2Str.isEmpty()) {
+        if (!num1Str.isEmpty() && !num2Str.isEmpty()) {
             Double num1Int = Double.parseDouble(num1Str);
             Double num2Int = Double.parseDouble(num2Str);
 
@@ -99,7 +99,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 result = num1 - num2;
                 break;
             case "/":
-                result = num1 / num2;
+                if (num1 == 0 && num2 == 0) {
+                    result = 0.0;
+                } else {
+                    result = num1 / num2;
+                }
                 break;
             case "*":
                 result = num1 * num2;
