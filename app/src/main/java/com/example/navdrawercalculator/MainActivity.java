@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 if (inputHandler()) {
-                    Snackbar.make(view, "Equation has been calculated", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "Calculation Complete!", Snackbar.LENGTH_LONG)
                             .setAction("Undo", undo).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Please enter another number", Toast.LENGTH_LONG).show();
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             String result = performOperation(num1Int, num2Int);
 
-            answers.add(num1Str + operation + num2Str + " = " + result);
+            answers.add(num1Str + " " + operation + " " + num2Str + " = " + result);
             adapter.notifyDataSetChanged();
         } else {
             return false;
